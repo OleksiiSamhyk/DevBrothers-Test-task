@@ -22,14 +22,10 @@ const TreeNodeComponent: React.FC<{
             {isExpanded ? <ArrowDropDownIcon /> : <ArrowRightIcon />}
           </IconButton>
         )}
-        <Button
-          disabled={isRoot}
-          onClick={() => setIsChosen(true)}
-          variant="text"
-        >
+        <Button onClick={() => setIsChosen(true)} variant="text">
           {name}
         </Button>
-        {isChosen && <EditedTreeNode id={id} name={name} />}
+        {isChosen && <EditedTreeNode isRootNode={isRoot} id={id} name={name} />}
       </Stack>
 
       {isExpanded && children}

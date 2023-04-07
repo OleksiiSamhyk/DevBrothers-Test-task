@@ -17,12 +17,14 @@ interface IConfirmationButton {
   };
   onConfirm: () => Promise<any>;
   children: React.ReactNode;
+  disabled?: boolean;
 }
 
 export const ConfirmationButton: React.FC<IConfirmationButton> = ({
   ButtonIcon,
   onConfirm,
   children,
+  disabled,
 }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -48,7 +50,7 @@ export const ConfirmationButton: React.FC<IConfirmationButton> = ({
   return (
     <>
       <IconButton
-        disabled={isLoading}
+        disabled={disabled || isLoading}
         id="confirmation-button"
         aria-haspopup="true"
         onClick={handleClick}

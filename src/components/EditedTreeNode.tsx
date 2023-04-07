@@ -10,7 +10,8 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 export const EditedTreeNode: React.FC<{
   id: number;
   name: string;
-}> = ({ id, name }) => {
+  isRootNode?: boolean;
+}> = ({ id, name, isRootNode }) => {
   const newName = useRef<string>("");
   const { refetchTree } = useTreeContext();
 
@@ -35,6 +36,7 @@ export const EditedTreeNode: React.FC<{
   return (
     <Stack direction="row" gap={2}>
       <ConfirmationButton
+        disabled={isRootNode}
         onConfirm={handleNameChange}
         ButtonIcon={ModeEditIcon}
       >
@@ -53,6 +55,7 @@ export const EditedTreeNode: React.FC<{
         />
       </ConfirmationButton>
       <ConfirmationButton
+        disabled={isRootNode}
         onConfirm={handleDeleteNode}
         ButtonIcon={DeleteForeverIcon}
       >
